@@ -1,0 +1,55 @@
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background: #141414;
+
+    color: white;
+
+    overflow-x: hidden;
+
+}
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    font: inherit;
+
+}
+
+img {
+
+    display: block;
+
+    max-width: 100%;
+
+}
+
+.app {
+
+    min-height: 100vh;
+
+    background: #141414;
+
+}
