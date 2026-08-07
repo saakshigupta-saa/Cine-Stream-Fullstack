@@ -1,196 +1,254 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap');
 
-.header {
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    position: fixed;
+.header{
 
-    top: 0;
-    left: 0;
+    position:fixed;
 
-    width: 100%;
+    top:0;
+    left:0;
 
-    height: 72px;
+    width:100%;
 
-    padding: 0 60px;
+    height:74px;
 
-    display: flex;
+    display:flex;
 
-    justify-content: space-between;
+    justify-content:space-between;
 
-    align-items: center;
+    align-items:center;
 
-    background: linear-gradient(
+    padding:0 60px;
+
+    background:linear-gradient(
         to bottom,
-        rgba(0,0,0,.95),
-        rgba(0,0,0,.55),
+        rgba(0,0,0,.96),
+        rgba(0,0,0,.72),
+        rgba(0,0,0,.18),
         transparent
     );
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:blur(12px);
 
-    z-index: 1000;
+    z-index:1000;
 
-    transition: all .35s ease;
+    transition:all .35s ease;
 
 }
 
 /* Logo */
 
-.logo {
+.logo{
 
-    font-family: "Bebas Neue", sans-serif;
+    font-family:"Bebas Neue",sans-serif;
 
-    font-size: 2.8rem;
+    font-size:2.9rem;
 
-    color: #E50914;
+    color:#E50914;
 
-    letter-spacing: 1px;
+    letter-spacing:1px;
 
-    cursor: pointer;
+    cursor:pointer;
+
+    user-select:none;
 
 }
 
-.logo span {
+.logo span{
 
-    color: #ffffff;
+    color:#ffffff;
 
 }
 
 /* Navigation */
 
-.nav-links {
+.nav-links{
 
-    display: flex;
+    display:flex;
 
-    gap: 36px;
+    align-items:center;
 
-}
-
-.nav-links a {
-
-    position: relative;
-
-    color: #d1d5db;
-
-    font-size: 15px;
-
-    font-weight: 500;
-
-    transition: .3s;
+    gap:36px;
 
 }
 
-.nav-links a:hover {
+.nav-links a{
 
-    color: white;
+    position:relative;
 
-}
+    color:#d1d5db;
 
-/* Netflix-style underline */
+    text-decoration:none;
 
-.nav-links a::after {
+    font-size:15px;
 
-    content: "";
+    font-weight:500;
 
-    position: absolute;
-
-    left: 0;
-    bottom: -8px;
-
-    width: 0;
-
-    height: 2px;
-
-    background: #E50914;
-
-    transition: width .3s ease;
+    transition:all .3s ease;
 
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover{
 
-    width: 100%;
+    color:#ffffff;
+
+}
+
+/* Active Route */
+
+.active-link{
+
+    color:#ffffff !important;
+
+}
+
+.active-link::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-10px;
+
+    width:100%;
+
+    height:3px;
+
+    background:#E50914;
+
+    border-radius:30px;
+
+}
+
+/* Hover Underline */
+
+.nav-links a:not(.active-link)::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-10px;
+
+    width:0;
+
+    height:3px;
+
+    background:#E50914;
+
+    border-radius:30px;
+
+    transition:width .3s ease;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
 
 }
 
 /* Icons */
 
-.header-icons {
+.header-icons{
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 24px;
-
-    color: white;
-
-    font-size: 20px;
+    gap:22px;
 
 }
 
-.header-icons svg {
+.header-icon{
 
-    cursor: pointer;
+    color:#ffffff;
+
+    font-size:20px;
+
+    cursor:pointer;
 
     transition:
-        color .3s,
-        transform .3s;
+        color .3s ease,
+        transform .3s ease;
 
 }
 
-.header-icons svg:hover {
+.header-icon:hover{
 
-    color: #E50914;
+    color:#E50914;
 
-    transform: scale(1.15);
+    transform:scale(1.15);
 
 }
 
 /* Profile */
 
-.header-icons svg:last-child {
+.profile-icon{
 
-    font-size: 34px;
+    font-size:30px;
 
 }
 
 /* Responsive */
 
-@media (max-width: 992px) {
+@media(max-width:992px){
 
-    .header {
+    .header{
 
-        padding: 0 30px;
+        padding:0 30px;
 
     }
 
-    .nav-links {
+    .nav-links{
 
-        gap: 22px;
+        gap:24px;
 
     }
 
 }
 
-@media (max-width: 768px) {
+@media(max-width:768px){
 
-    .nav-links {
+    .header{
 
-        display: none;
+        padding:0 20px;
 
-    }
-
-    .header {
-
-        padding: 0 20px;
+        height:68px;
 
     }
 
-    .logo {
+    .logo{
 
-        font-size: 2.3rem;
+        font-size:2.4rem;
+
+    }
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+    .header-icons{
+
+        gap:18px;
+
+    }
+
+    .profile-icon{
+
+        font-size:26px;
 
     }
 

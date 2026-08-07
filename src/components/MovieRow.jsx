@@ -1,7 +1,35 @@
+import { useRef } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../styles/MovieRow.css";
 import MovieCard from "./MovieCard";
 
 function MovieRow({ title, movies }) {
+
+  const sliderRef = useRef(null);
+
+  function scrollLeft() {
+
+    sliderRef.current.scrollBy({
+
+      left: -900,
+
+      behavior: "smooth",
+
+    });
+
+  }
+
+  function scrollRight() {
+
+    sliderRef.current.scrollBy({
+
+      left: 900,
+
+      behavior: "smooth",
+
+    });
+
+  }
 
   return (
 
@@ -15,31 +43,58 @@ function MovieRow({ title, movies }) {
 
         </h2>
 
-        <button className="see-all">
+      </div>
 
-          See All →
+      <div className="slider-container">
+
+        <button
+          className="slider-btn left"
+          onClick={scrollLeft}
+        >
+
+          <FaChevronLeft />
 
         </button>
 
-      </div>
+        <div
+          className="row-posters"
+          ref={sliderRef}
+        >
 
-      <div className="row-posters">
+          {movies.length > 0 ? (
 
-        {
+            movies.map((movie) => (
 
-          movies.map((movie) => (
+              <MovieCard
 
-            <MovieCard
+                key={movie.imdbID}
 
-              key={movie.imdbID}
+                movie={movie}
 
-              movie={movie}
+              />
 
-            />
+            ))
 
-          ))
+          ) : (
 
-        }
+            <div className="empty-state">
+
+              <h3>No Movies Found</h3>
+
+            </div>
+
+          )}
+
+        </div>
+
+        <button
+          className="slider-btn right"
+          onClick={scrollRight}
+        >
+
+          <FaChevronRight />
+
+        </button>
 
       </div>
 

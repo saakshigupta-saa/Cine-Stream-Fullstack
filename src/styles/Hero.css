@@ -1,66 +1,137 @@
 .hero{
 
-    min-height:100vh;
+    position:relative;
+
+    height:85vh;
 
     display:flex;
 
     align-items:center;
 
-    padding:0 6%;
+    padding:0 70px;
 
-    background:
+    overflow:hidden;
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.45),
+            #141414
+        ),
         linear-gradient(
             to right,
             rgba(0,0,0,.92),
             rgba(0,0,0,.55),
-            rgba(0,0,0,.2)
+            rgba(0,0,0,.18)
         ),
-        linear-gradient(
-            to top,
-            #141414,
-            transparent 30%
-        ),
-        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2000&q=80");
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80");
 
     background-size:cover;
 
     background-position:center;
 
+    animation:heroZoom 18s ease-in-out infinite alternate;
+
+    margin-bottom:0;
+
 }
 
 .hero-overlay{
 
-    max-width:650px;
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.15);
 
 }
 
-.hero-badge{
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:100%;
+
+    height:140px;
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        #141414
+    );
+
+    z-index:1;
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    max-width:650px;
+
+    z-index:2;
+
+}
+
+.hero-tag{
 
     display:inline-block;
 
     padding:8px 18px;
 
-    border-radius:999px;
+    margin-bottom:20px;
+
+    border-radius:30px;
 
     background:rgba(229,9,20,.18);
 
-    border:1px solid rgba(229,9,20,.4);
+    border:1px solid rgba(229,9,20,.45);
 
     color:#ffb3b3;
 
     font-size:14px;
 
-    margin-bottom:24px;
+    font-weight:700;
+
+    letter-spacing:2px;
 
 }
 
 .hero-title{
 
+    color:#fff;
+
     font-size:5rem;
 
     font-weight:800;
 
-    line-height:1.05;
+    line-height:1;
+
+    margin-bottom:18px;
+
+    text-shadow:0 8px 20px rgba(0,0,0,.55);
+
+}
+
+.hero-meta{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    color:#d1d5db;
+
+    font-size:15px;
 
     margin-bottom:24px;
 
@@ -68,13 +139,15 @@
 
 .hero-description{
 
-    color:#d1d5db;
+    color:#d4d4d4;
 
-    font-size:1.15rem;
+    font-size:18px;
 
     line-height:1.8;
 
-    margin-bottom:40px;
+    max-width:600px;
+
+    margin-bottom:38px;
 
 }
 
@@ -82,19 +155,29 @@
 
     display:flex;
 
-    gap:20px;
+    gap:18px;
 
 }
 
-.play-btn{
+.play-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
 
     padding:15px 40px;
 
-    border-radius:999px;
+    border:none;
 
-    background:#E50914;
+    border-radius:6px;
 
-    color:white;
+    background:#fff;
+
+    color:#000;
+
+    font-size:16px;
 
     font-weight:700;
 
@@ -102,63 +185,122 @@
 
 }
 
-.play-btn:hover{
-
-    background:#c40812;
+.play-button:hover{
 
     transform:translateY(-3px);
 
+    background:#ececec;
+
+    box-shadow:0 12px 30px rgba(255,255,255,.15);
+
 }
 
-.info-btn{
+.info-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
 
     padding:15px 40px;
 
-    border-radius:999px;
+    border:none;
 
-    background:rgba(255,255,255,.15);
+    border-radius:6px;
 
-    color:white;
+    background:rgba(109,109,110,.7);
 
     backdrop-filter:blur(10px);
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
 
     transition:.3s;
 
 }
 
-.info-btn:hover{
-
-    background:rgba(255,255,255,.28);
+.info-button:hover{
 
     transform:translateY(-3px);
+
+    background:rgba(109,109,110,.95);
+
+}
+
+@keyframes heroZoom{
+
+    from{
+
+        background-size:100%;
+
+    }
+
+    to{
+
+        background-size:105%;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .hero{
+
+        padding:0 40px;
+
+        height:80vh;
+
+    }
+
+    .hero-title{
+
+        font-size:4rem;
+
+    }
 
 }
 
 @media(max-width:768px){
 
-.hero{
+    .hero{
 
-padding:120px 20px 60px;
+        height:75vh;
 
-}
+        padding:0 20px;
 
-.hero-title{
+    }
 
-font-size:3rem;
+    .hero-title{
 
-}
+        font-size:3rem;
 
-.hero-buttons{
+    }
 
-flex-direction:column;
+    .hero-description{
 
-}
+        font-size:15px;
 
-.play-btn,
-.info-btn{
+    }
 
-width:100%;
+    .hero-buttons{
 
-}
+        flex-wrap:wrap;
+
+    }
+
+    .play-button,
+
+    .info-button{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
 
 }

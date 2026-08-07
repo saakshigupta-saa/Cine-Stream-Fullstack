@@ -1,36 +1,53 @@
-import "../styles/Header.css";
+import { NavLink } from "react-router-dom";
 import { FaSearch, FaHeart, FaUserCircle } from "react-icons/fa";
+import "../styles/Header.css";
 
 function Header() {
+
   return (
+
     <header className="header">
 
-      <div className="logo">
-        Cine<span>Stream</span>
-      </div>
+     <NavLink to="/" className="logo">
+  Cine<span>Stream</span>
+</NavLink>
 
       <nav className="nav-links">
 
-        <a href="#">Home</a>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "active-link" : ""
+          }
+        >
+          Home
+        </NavLink>
 
-        <a href="#">Movies</a>
-
-        <a href="#">Favorites</a>
+        <NavLink
+          to="/favorites"
+          className={({ isActive }) =>
+            isActive ? "active-link" : ""
+          }
+        >
+          Favorites
+        </NavLink>
 
       </nav>
 
       <div className="header-icons">
 
-        <FaSearch />
+        <FaSearch className="header-icon" />
 
-        <FaHeart />
+        <FaHeart className="header-icon" />
 
-        <FaUserCircle />
+        <FaUserCircle className="header-icon profile-icon" />
 
       </div>
 
     </header>
+
   );
+
 }
 
 export default Header;
