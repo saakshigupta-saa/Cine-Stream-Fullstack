@@ -275,21 +275,25 @@ Add screenshots of the application here after deployment.
 
 ### Home
 
-```
-<img width="1913" height="983" alt="Screenshot 2026-08-08 193202" src="https://github.com/user-attachments/assets/037cb191-ded5-4ca7-814c-f1e775d76a6b" />
+```text
+<img width="1913" height="983" alt="Screenshot 2026-08-08 193202" src="https://github.com/user-attachments/assets/d5bfb74d-9c3e-458e-a3be-167e6e8a97e5" />
+
+
 
 ```
 
 ### Movie Details
 
-```
-<img width="1917" height="988" alt="Screenshot 2026-08-08 195247" src="https://github.com/user-attachments/assets/1b151ae9-0c9b-41c6-ae13-5c49f64e9ef8" />
+```text
+<img width="1917" height="988" alt="Screenshot 2026-08-08 195247" src="https://github.com/user-attachments/assets/2ef439c8-765a-45b7-9cb9-5eb268fc9b18" />
+
 
 ```
 
 ### Favorites
 
-```<img width="1917" height="987" alt="Screenshot 2026-08-08 195205" src="https://github.com/user-attachments/assets/075829b8-750b-42cc-8682-1f881eabcaca" />
+```text
+<img width="1917" height="987" alt="Screenshot 2026-08-08 195205" src="https://github.com/user-attachments/assets/075829b8-750b-42cc-8682-1f881eabcaca" />
 
 
 ```
