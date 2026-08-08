@@ -1,0 +1,387 @@
+.movie-details{
+
+    min-height:100vh;
+
+    padding:120px 70px 80px;
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    position:relative;
+
+    color:#ffffff;
+
+}
+
+/* Back Button */
+
+.back-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 24px;
+
+    margin-bottom:50px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    color:#ffffff;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#E50914;
+
+    transform:translateY(-2px);
+
+}
+
+/* Layout */
+
+.details-container{
+
+    display:grid;
+
+    grid-template-columns:340px 1fr;
+
+    gap:60px;
+
+    align-items:start;
+
+}
+
+/* Poster */
+
+.details-poster{
+
+    width:100%;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 30px 70px rgba(0,0,0,.65);
+
+}
+
+/* Info */
+
+.details-info{
+
+    max-width:850px;
+
+}
+
+.details-info h1{
+
+    font-size:4rem;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+    line-height:1.05;
+
+}
+
+/* Meta */
+
+.details-meta{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+}
+
+.details-meta span{
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(8px);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* Plot */
+
+.details-plot{
+
+    color:#d4d4d4;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    margin-bottom:35px;
+
+}
+
+/* Grid */
+
+.details-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+
+}
+
+.details-grid p{
+
+    color:#d1d5db;
+
+    line-height:1.7;
+
+}
+
+.details-grid strong{
+
+    color:#ffffff;
+
+}
+
+/* Buttons */
+
+.details-buttons{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+.play-button,
+
+.favorite-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:15px 32px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:all .3s ease;
+
+}
+
+.play-button{
+
+    background:#ffffff;
+
+    color:#000000;
+
+}
+
+.play-button:hover{
+
+    background:#ececec;
+
+    transform:translateY(-3px);
+
+}
+
+.favorite-button{
+
+    background:#E50914;
+
+    color:#ffffff;
+
+}
+
+.favorite-button:hover{
+
+    background:#b20710;
+
+    transform:translateY(-3px);
+
+}
+
+/* Loading */
+
+.loading{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:2rem;
+
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+    .movie-details{
+
+        padding:100px 30px 60px;
+
+    }
+
+    .details-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .details-poster{
+
+        width:300px;
+
+        margin:auto;
+
+    }
+
+    .details-info{
+
+        text-align:center;
+
+    }
+
+    .details-meta{
+
+        justify-content:center;
+
+    }
+
+    .details-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .details-buttons{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .details-info h1{
+
+        font-size:2.5rem;
+
+    }
+
+    .details-plot{
+
+        font-size:16px;
+
+    }
+
+    .details-poster{
+
+        width:240px;
+
+    }
+
+    .play-button,
+
+    .favorite-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:15px 32px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#E50914;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.favorite-button:hover{
+
+    transform:translateY(-3px);
+
+    background:#b20710;
+
+}
+
+.favorite-button.active{
+
+    background:#2ecc71;
+
+}
+
+.favorite-button.active:hover{
+
+    background:#27ae60;
+
+}
+
+}

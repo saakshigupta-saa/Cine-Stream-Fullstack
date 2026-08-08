@@ -9,6 +9,7 @@ import SearchBar from "./components/SearchBar";
 
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
 
@@ -23,36 +24,36 @@ function App() {
       <Routes>
 
         <Route
-
           path="/"
-
           element={
-
             <>
-    <Hero />
+              <Hero />
 
-    <div className="search-wrapper">
+              <div className="search-wrapper">
 
-        <SearchBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-        />
+                <SearchBar
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                />
 
-    </div>
+              </div>
 
-    <Home searchTerm={searchTerm} />
-</>
+              <Home
+                searchTerm={searchTerm}
+              />
 
+            </>
           }
-
         />
 
         <Route
-
           path="/favorites"
-
           element={<Favorites />}
+        />
 
+        <Route
+          path="/movie/:imdbID"
+          element={<MovieDetails />}
         />
 
       </Routes>

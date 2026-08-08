@@ -4,25 +4,38 @@ const API = axios.create({
   baseURL: import.meta.env.VITE_OMDB_BASE_URL,
 });
 
+// Search Movies
 export const searchMovies = async (query = "Marvel", page = 1) => {
-  const response = await API.get("/", {
-    params: {
-      apikey: import.meta.env.VITE_OMDB_API_KEY,
-      s: query,
-      page,
-    },
-  });
+  try {
+    const response = await API.get("/", {
+      params: {
+        apikey: import.meta.env.VITE_OMDB_API_KEY,
+        s: query,
+        page,
+      },
+    });
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.error("Search Movies Error:", error);
+    throw error;
+  }
 };
 
+// Get Single Movie Details
 export const getMovieDetails = async (id) => {
-  const response = await API.get("/", {
-    params: {
-      apikey: import.meta.env.VITE_OMDB_API_KEY,
-      i: id,
-    },
-  });
+  try {
+    const response = await API.get("/", {
+      params: {
+        apikey: import.meta.env.VITE_OMDB_API_KEY,
+        i: id,
+        plot: "full",
+      },
+    });
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.error("Movie Details Error:", error);
+    throw error;
+  }
 };

@@ -1,39 +1,51 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaHeart, FaPlay } from "react-icons/fa";
 import { FavoritesContext } from "../context/FavoritesContext";
 import "../styles/MovieCard.css";
 
 function MovieCard({ movie }) {
 
+  const navigate = useNavigate();
+
   const {
     favorites,
-    addToFavorites,
-    removeFromFavorites,
+    addFavorite,
+    removeFavorite,
   } = useContext(FavoritesContext);
 
   const isFavorite = favorites.some(
     (fav) => fav.imdbID === movie.imdbID
   );
 
-  const toggleFavorite = (e) => {
+  function toggleFavorite(e) {
 
     e.stopPropagation();
 
     if (isFavorite) {
 
-      removeFromFavorites(movie.imdbID);
+      removeFavorite(movie.imdbID);
 
     } else {
 
-      addToFavorites(movie);
+      addFavorite(movie);
 
     }
 
-  };
+  }
+
+  function openMovieDetails() {
+
+    navigate(`/movie/${movie.imdbID}`);
+
+  }
 
   return (
 
-    <article className="movie-card">
+    <article
+      className="movie-card"
+      onClick={openMovieDetails}
+    >
 
       <div className="movie-poster">
 
