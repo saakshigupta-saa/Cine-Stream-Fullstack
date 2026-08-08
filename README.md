@@ -1,38 +1,107 @@
 # 🎬 CineStream — Media Explorer
 
-CineStream is a responsive movie discovery web application built with **React and Vite**. It allows users to search for movies, explore movie collections, view detailed movie information, save favorites, and access official movie trailers.
+> A modern, responsive movie discovery platform built with React and Vite, powered by the OMDb API.
+
+CineStream is a frontend movie discovery application designed to provide a smooth, cinematic browsing experience. Users can explore curated movie collections, search for movies, view detailed information, save favorites, and find official trailers.
+
+---
+
+## ✨ Overview
+
+CineStream combines a clean streaming-platform-inspired interface with real-time movie data from the **OMDb API**.
+
+The project focuses on:
+
+* Clean component architecture
+* Responsive UI design
+* Reusable React components
+* API integration
+* Client-side routing
+* Search optimization
+* Persistent favorites
+* Loading and error handling
+* Production-ready frontend structure
+
+---
 
 ## 🚀 Features
 
-* 🎬 Movie discovery
-* 🔎 Movie search
-* ⏱️ Debounced search
-* 🎞️ Movie cards
-* 📚 Multiple movie categories
-* ♾️ Infinite scrolling
-* 📖 Movie details page
-* ❤️ Favorites collection
-* 💾 Persistent favorites
-* ▶️ Official trailer search
-* ⬅️ Back navigation
-* ⏳ Loading states
-* ⚠️ Error handling
-* 📱 Responsive design
-* 🌙 Dark cinematic UI
-* ✨ Smooth hover effects
+### 🎥 Movie Discovery
+
+* Curated movie categories
+* Trending-style movie sections
+* Horizontal movie sliders
+* Interactive movie cards
+* Infinite scrolling
+
+### 🔎 Smart Search
+
+* Real-time movie search
+* Debounced search input
+* Search loading state
+* Empty search state
+* API error handling
+
+### 📖 Movie Details
+
+Each movie has a dedicated details page containing:
+
+* Movie poster
+* Movie title
+* IMDb rating
+* Release year
+* Runtime
+* Certification
+* Plot
+* Genre
+* Director
+* Cast
+* Release date
+* Language
+* Awards
+
+### ❤️ Favorites
+
+Users can:
+
+* Add movies to favorites
+* Remove movies from favorites
+* View saved movies
+* See total favorites count
+* Access an empty-state experience
+* Persist favorites using browser storage
+
+### ▶️ Official Trailers
+
+The application provides an **Official Trailer** option that searches YouTube for the selected movie's official trailer.
+
+### 📱 Responsive Design
+
+CineStream is designed for:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+---
 
 ## 🛠️ Tech Stack
 
-* React
-* Vite
-* JavaScript
-* CSS
-* React Router
-* Axios
-* React Icons
-* OMDb API
+| Technology   | Purpose                     |
+| ------------ | --------------------------- |
+| React        | UI development              |
+| Vite         | Development & build tooling |
+| JavaScript   | Application logic           |
+| CSS          | Styling & responsive design |
+| React Router | Client-side routing         |
+| Axios        | API requests                |
+| React Icons  | Interface icons             |
+| OMDb API     | Movie data                  |
 
-## 📁 Project Structure
+---
+
+## 🏗️ Project Architecture
 
 ```text
 cine-stream/
@@ -40,6 +109,7 @@ cine-stream/
 ├── public/
 │
 ├── src/
+│   │
 │   ├── api/
 │   │   └── omdb.js
 │   │
@@ -73,6 +143,7 @@ cine-stream/
 │   ├── App.jsx
 │   └── main.jsx
 │
+├── .env
 ├── .gitignore
 ├── index.html
 ├── package.json
@@ -80,18 +151,20 @@ cine-stream/
 └── README.md
 ```
 
-## 🔐 Environment Variables
+## 🔐 Environment Configuration
 
 Create a `.env` file in the project root:
 
 ```env
-VITE_OMDB_API_KEY=your_omdb_api_key
+VITE_OMDB_API_KEY=your_api_key
 VITE_OMDB_BASE_URL=https://www.omdbapi.com/
 ```
 
-Do **not** upload `.env` to GitHub.
+### Important
 
-Your `.gitignore` should contain:
+Never commit your `.env` file to GitHub.
+
+Your `.gitignore` should include:
 
 ```gitignore
 node_modules/
@@ -101,166 +174,146 @@ dist/
 .env.*.local
 ```
 
-## ⚙️ Installation
+## ⚙️ Getting Started
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/saakshigupta-saa/Cine-Stream.git
 ```
 
-Open the project:
+### 2. Navigate to the project
 
 ```bash
 cd cine-stream
 ```
 
-Install dependencies:
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-## ▶️ Run the Application
+### 4. Configure environment variables
 
-Start the development server:
+Create `.env` and add your OMDb API credentials.
+
+### 5. Start the development server
 
 ```bash
 npm run dev
 ```
 
-Then open the local URL displayed by Vite.
+The application will be available at the local URL provided by Vite.
+
+---
 
 ## 🏗️ Production Build
 
-Create a production build:
+Create an optimized production build:
 
 ```bash
 npm run build
 ```
 
-Preview the production build:
+Preview the production build locally:
 
 ```bash
 npm run preview
 ```
 
-## 🎯 Movie Categories
+---
 
-CineStream currently provides categories such as:
+## 🎨 Design System
 
-* Trending Now
-* Marvel Universe
-* Avengers Collection
-* Batman Collection
-* Spider-Verse
-* Star Wars
-* Wizarding World
-* Disney Classics
+CineStream follows a dark cinematic design language inspired by modern streaming services.
 
-## 🔎 Search
+### UI Principles
 
-The search system uses debouncing to reduce unnecessary API requests.
-
-Users can:
-
-1. Enter a movie title.
-2. Wait for the search to trigger.
-3. View matching movies.
-4. Open a movie's details page.
-
-## ❤️ Favorites
-
-Users can add movies to their favorites collection.
-
-The Favorites page provides:
-
-* Saved movie count
-* Saved movies
-* Remove favorite functionality
-* Empty collection state
-* Browse movies button
-
-Favorites are persisted using browser storage.
-
-## 📖 Movie Details
-
-The details page displays:
-
-* Poster
-* Title
-* IMDb rating
-* Release year
-* Runtime
-* Certification
-* Plot
-* Genre
-* Director
-* Actors
-* Release date
-* Language
-* Awards
-
-## ▶️ Trailer
-
-CineStream provides an **Official Trailer** option.
-
-When a direct trailer video ID is unavailable through the available movie API, the application opens an official YouTube trailer search for the selected movie.
-
-## 📱 Responsive Design
-
-The application is optimized for:
-
-* Desktop
-* Laptop
-* Tablet
-* Mobile
-
-The UI includes responsive:
-
-* Movie cards
-* Movie rows
-* Navigation
-* Search
-* Movie details
-* Favorites
-* Buttons
-* Spacing
-
-## 🎨 UI Design
-
-CineStream uses a dark cinematic interface inspired by modern streaming platforms.
-
-The design focuses on:
-
-* Clean spacing
 * Strong visual hierarchy
-* Consistent typography
-* Tight controls
-* Smooth transitions
+* Consistent spacing
+* Compact controls
 * Responsive layouts
-* Minimal red accent styling
+* Smooth transitions
+* Interactive hover states
+* Accessible contrast
+* Minimal visual clutter
 
-## 🚀 Future Improvements
+---
 
-Possible future improvements include:
+## 🧠 Key Implementation Concepts
 
-* User authentication
-* Genre filtering
-* Advanced sorting
-* Rating filters
-* Watchlist
-* Personalized recommendations
-* Backend API proxy
-* Secure server-side API requests
-* Direct trailer video integration
-* Skeleton loading
-* PWA support
+### Debounced Search
+
+Search requests are delayed until the user pauses typing to reduce unnecessary API calls.
+
+### Infinite Scrolling
+
+Additional movie results are loaded when the user approaches the bottom of the page.
+
+### Context API
+
+Favorites are managed globally using React Context.
+
+### Local Storage
+
+Favorite movies persist between browser sessions.
+
+### Dynamic Routing
+
+Movie details are accessed using the movie's IMDb ID:
+
+```text
+/movie/:imdbID
+```
+
+---
+
+## 📸 Screenshots
+
+Add screenshots of the application here after deployment.
+
+### Home
+
+```
+<img width="1913" height="983" alt="Screenshot 2026-08-08 193202" src="https://github.com/user-attachments/assets/037cb191-ded5-4ca7-814c-f1e775d76a6b" />
+
+```
+
+### Movie Details
+
+```
+<img width="1917" height="988" alt="Screenshot 2026-08-08 195247" src="https://github.com/user-attachments/assets/1b151ae9-0c9b-41c6-ae13-5c49f64e9ef8" />
+
+```
+
+### Favorites
+
+```<img width="1917" height="987" alt="Screenshot 2026-08-08 195205" src="https://github.com/user-attachments/assets/075829b8-750b-42cc-8682-1f881eabcaca" />
+
+
+```
+
+
+
+## 🚀 Deployment
+
+https://cine-stream-steel-sigma.vercel.app/
+---
 
 ## 👩‍💻 Author
 
-**Sakshi Gupta**
+### Sakshi Gupta
+
+---
 
 ## 📄 License
 
-This project was created for learning, development, and portfolio purposes.
+This project was developed for educational, portfolio, and learning purposes.
+
+---
+
+
+### 🎬 CineStream
+
+**Discover. Explore. Save. Watch.**
