@@ -1,57 +1,225 @@
-.home{
+.home {
+    min-height: 100vh;
 
-    background:#141414;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(20,20,20,0.35),
+            #141414 12%
+        );
 
-    padding:20px 0 100px;
+    padding: 10px 0 100px;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   SEARCH RESULTS
+========================= */
+
+.search-results-section {
+    min-height: 400px;
+
+    padding-top: 10px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.home-loading {
+    min-height: 400px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+
+    color: #a3a3a3;
+
+    text-align: center;
+}
+
+.home-loading p {
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #9ca3af;
+}
+
+
+/* =========================
+   SPINNER
+========================= */
+
+.loading-spinner {
+    width: 42px;
+
+    height: 42px;
+
+    border: 4px solid
+        rgba(255,255,255,.12);
+
+    border-top-color: #E50914;
+
+    border-radius: 50%;
+
+    animation:
+        spin .8s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
 
 }
 
-.loading-text{
 
-    color:white;
+/* =========================
+   EMPTY SEARCH
+========================= */
 
-    text-align:center;
+.empty-search {
+    min-height: 430px;
 
-    padding:120px 0;
+    display: flex;
 
-    font-size:2rem;
+    flex-direction: column;
 
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: #ffffff;
 }
 
-.scroll-loader{
+.empty-search-icon {
+    width: 72px;
 
-    display:flex;
+    height: 72px;
 
-    justify-content:center;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    padding:50px;
+    justify-content: center;
 
+    margin-bottom: 22px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(229,9,20,.12);
+
+    border:
+        1px solid rgba(229,9,20,.25);
+
+    font-size: 30px;
 }
 
-.loading-spinner{
+.empty-search h2 {
+    margin: 0 0 10px;
 
-    width:42px;
+    font-size: 28px;
 
-    height:42px;
-
-    border:4px solid rgba(255,255,255,.15);
-
-    border-top:4px solid #E50914;
-
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-
+    font-weight: 700;
 }
 
-@keyframes spin{
+.empty-search p {
+    margin: 0 0 8px;
 
-    to{
+    color: #b3b3b3;
 
-        transform:rotate(360deg);
+    font-size: 16px;
+}
 
+.empty-search strong {
+    color: #ffffff;
+}
+
+.empty-search span {
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   INFINITE SCROLL
+========================= */
+
+.scroll-loader {
+    min-height: 120px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   END MESSAGE
+========================= */
+
+.end-message {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #666666;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .home {
+        padding-bottom: 70px;
+    }
+
+    .empty-search {
+        min-height: 350px;
+    }
+
+    .empty-search h2 {
+        font-size: 24px;
+    }
+
+    .empty-search p {
+        font-size: 14px;
+    }
+
+    .scroll-loader {
+        min-height: 100px;
     }
 
 }

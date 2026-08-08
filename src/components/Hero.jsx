@@ -1,70 +1,85 @@
-import "../styles/Hero.css";
+import { Link } from "react-router-dom";
 import { FaPlay, FaInfoCircle } from "react-icons/fa";
 
+import "../styles/Hero.css";
+
 function Hero() {
-
   return (
-
     <section className="hero">
+
+      <div className="hero-background"></div>
 
       <div className="hero-overlay"></div>
 
       <div className="hero-content">
 
-        <span className="hero-tag">
-          NETFLIX ORIGINAL
+        <span className="hero-badge">
+          CINESTREAM ORIGINAL
         </span>
 
         <h1 className="hero-title">
-
-          The Dark Knight
-
+          Discover Your
+          <span> Next Favorite Movie</span>
         </h1>
 
-        <div className="hero-meta">
-
-          <span>⭐ 9.0</span>
-
-          <span>2008</span>
-
-          <span>Action</span>
-
-          <span>2h 32m</span>
-
-        </div>
-
         <p className="hero-description">
-
-          Batman faces his greatest challenge as the Joker unleashes chaos across Gotham City, forcing the Dark Knight to confront impossible choices between justice and sacrifice.
-
+          Explore thousands of movies and TV shows,
+          discover what's trending, and build your
+          personal collection of favorites.
         </p>
 
         <div className="hero-buttons">
 
-          <button className="play-button">
-
+          <Link
+            to="/"
+            className="hero-primary-btn"
+          >
             <FaPlay />
+            Explore Movies
+          </Link>
 
-            Play
-
-          </button>
-
-          <button className="info-button">
-
+          <Link
+            to="/favorites"
+            className="hero-secondary-btn"
+          >
             <FaInfoCircle />
+            My Favorites
+          </Link>
 
-            More Info
+        </div>
 
-          </button>
+        <div className="hero-stats">
+
+          <div className="hero-stat">
+            <strong>10K+</strong>
+            <span>Movies</span>
+          </div>
+
+          <div className="hero-divider"></div>
+
+          <div className="hero-stat">
+            <strong>50+</strong>
+            <span>Genres</span>
+          </div>
+
+          <div className="hero-divider"></div>
+
+          <div className="hero-stat">
+            <strong>24/7</strong>
+            <span>Discover</span>
+          </div>
 
         </div>
 
       </div>
 
+      <div className="hero-scroll">
+        <span>Scroll to explore</span>
+        <div className="scroll-line"></div>
+      </div>
+
     </section>
-
   );
-
 }
 
 export default Hero;

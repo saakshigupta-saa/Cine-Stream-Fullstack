@@ -1,0 +1,206 @@
+/* =================================
+   TRAILER BACKDROP
+================================= */
+
+.trailer-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.82);
+
+  backdrop-filter: blur(8px);
+
+  animation: trailerFadeIn 0.25s ease;
+}
+
+@keyframes trailerFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =================================
+   MODAL
+================================= */
+
+.trailer-modal {
+  width: min(100%, 1000px);
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 14px;
+
+  background: #111111;
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.8);
+
+  animation: trailerScaleIn 0.25s ease;
+}
+
+@keyframes trailerScaleIn {
+  from {
+    opacity: 0;
+
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+}
+
+/* =================================
+   HEADER
+================================= */
+
+.trailer-header {
+  min-height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 16px 0 20px;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  background: #151515;
+}
+
+.trailer-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.trailer-title svg {
+  color: #ff0000;
+
+  font-size: 19px;
+}
+
+/* =================================
+   CLOSE
+================================= */
+
+.trailer-close {
+  width: 34px;
+
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.trailer-close:hover {
+  background: #e50914;
+
+  transform: rotate(90deg);
+}
+
+/* =================================
+   VIDEO
+================================= */
+
+.trailer-content {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  background: #000000;
+}
+
+.trailer-content iframe {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  border: none;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+  .trailer-backdrop {
+    padding: 12px;
+  }
+
+  .trailer-modal {
+    border-radius: 10px;
+  }
+
+  .trailer-header {
+    min-height: 52px;
+
+    padding-left: 14px;
+  }
+
+  .trailer-title {
+    font-size: 12px;
+  }
+
+  .trailer-title svg {
+    font-size: 17px;
+  }
+
+  .trailer-close {
+    width: 31px;
+
+    height: 31px;
+  }
+}

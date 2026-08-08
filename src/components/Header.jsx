@@ -1,53 +1,62 @@
-import { NavLink } from "react-router-dom";
-import { FaSearch, FaHeart, FaUserCircle } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import { FaHeart, FaFilm } from "react-icons/fa";
+
 import "../styles/Header.css";
 
 function Header() {
-
   return (
-
     <header className="header">
 
-     <NavLink to="/" className="logo">
-  Cine<span>Stream</span>
-</NavLink>
+      <div className="header-inner">
 
-      <nav className="nav-links">
+        {/* LOGO */}
 
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "active-link" : ""
-          }
-        >
-          Home
-        </NavLink>
+        <Link to="/" className="logo">
+          <span className="logo-icon">
+            <FaFilm />
+          </span>
 
-        <NavLink
-          to="/favorites"
-          className={({ isActive }) =>
-            isActive ? "active-link" : ""
-          }
-        >
-          Favorites
-        </NavLink>
+          <span className="logo-text">
+            Cine<span>Stream</span>
+          </span>
+        </Link>
 
-      </nav>
+        {/* NAVIGATION */}
 
-      <div className="header-icons">
+        <nav className="nav">
 
-        <FaSearch className="header-icon" />
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `nav-link ${
+                isActive ? "active" : ""
+              }`
+            }
+          >
+            Home
+          </NavLink>
 
-        <FaHeart className="header-icon" />
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) =>
+              `nav-link ${
+                isActive ? "active" : ""
+              }`
+            }
+          >
+            <FaHeart />
 
-        <FaUserCircle className="header-icon profile-icon" />
+            <span>
+              Favorites
+            </span>
+          </NavLink>
+
+        </nav>
 
       </div>
 
     </header>
-
   );
-
 }
 
 export default Header;

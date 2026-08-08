@@ -1,18 +1,40 @@
-import "../styles/SearchBar.css";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTimes } from "react-icons/fa";
 
-function SearchBar({ searchTerm, setSearchTerm }) {
+import "../styles/SearchBar.css";
+
+function SearchBar({
+  searchTerm,
+  setSearchTerm,
+}) {
+  function handleClear() {
+    setSearchTerm("");
+  }
+
   return (
-    <div className="search-container">
+    <div className="search-bar">
 
       <FaSearch className="search-icon" />
 
       <input
         type="text"
-        placeholder="Search movies..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) =>
+          setSearchTerm(e.target.value)
+        }
+        placeholder="Search movies, series..."
+        aria-label="Search movies"
       />
+
+      {searchTerm && (
+        <button
+          type="button"
+          className="search-clear"
+          onClick={handleClear}
+          aria-label="Clear search"
+        >
+          <FaTimes />
+        </button>
+      )}
 
     </div>
   );

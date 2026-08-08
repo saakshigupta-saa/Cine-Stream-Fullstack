@@ -8,7 +8,6 @@ import {
 
 import { FavoritesContext } from "../context/FavoritesContext";
 import { getMovieDetails } from "../api/omdb";
-import { findMovieTrailer } from "../api/watchmode";
 
 import "../styles/MovieDetails.css";
 
@@ -24,7 +23,11 @@ function MovieDetails() {
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [trailerLoading, setTrailerLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // =========================
+  // FETCH MOVIE DETAILS
+  // =========================
 
   useEffect(() => {
     fetchMovie();
@@ -32,58 +35,34 @@ function MovieDetails() {
 
   async function fetchMovie() {
     setLoading(true);
+    setError("");
+    setMovie(null);
 
     try {
       const data = await getMovieDetails(imdbID);
+
+      console.log("Movie Details:", data);
+
+      if (data.Response === "False") {
+        setError(data.Error || "Movie not found.");
+        return;
+      }
+
       setMovie(data);
-    } catch (error) {
-      console.error("Movie details error:", error);
+    } catch (err) {
+      console.error("Movie details error:", err);
+
+      setError(
+        "Unable to load movie details. Please try again."
+      );
     } finally {
       setLoading(false);
     }
   }
 
-  async function handleTrailer() {
-    if (!movie) return;
-
-    setTrailerLoading(true);
-
-    try {
-      console.log("Searching trailer for:", movie.Title);
-
-      const trailer = await findMovieTrailer(movie.Title);
-
-      console.log("Trailer response:", trailer);
-
-      if (trailer) {
-        window.open(
-          trailer,
-          "_blank",
-          "noopener,noreferrer"
-        );
-      } else {
-        openYoutubeSearch();
-      }
-    } catch (error) {
-      console.error("Trailer error:", error);
-
-      openYoutubeSearch();
-    } finally {
-      setTrailerLoading(false);
-    }
-  }
-
-  function openYoutubeSearch() {
-    const query = `${movie.Title} Official Trailer`;
-
-    window.open(
-      `https://www.youtube.com/results?search_query=${encodeURIComponent(
-        query
-      )}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  }
+  // =========================
+  // LOADING
+  // =========================
 
   if (loading) {
     return (
@@ -93,12 +72,17 @@ function MovieDetails() {
     );
   }
 
-  if (!movie || movie.Response === "False") {
+  // =========================
+  // ERROR
+  // =========================
+
+  if (error || !movie) {
     return (
-      <div className="movie-details loading">
-        <h2>Movie not found.</h2>
+      <div className="movie-details error-state">
+        <h2>{error || "Movie not found."}</h2>
 
         <button
+          type="button"
           className="back-btn"
           onClick={() => navigate(-1)}
         >
@@ -108,6 +92,10 @@ function MovieDetails() {
       </div>
     );
   }
+
+  // =========================
+  // FAVORITE
+  // =========================
 
   const isFavorite = favorites.some(
     (fav) => fav.imdbID === movie.imdbID
@@ -121,6 +109,37 @@ function MovieDetails() {
     }
   }
 
+  // =========================
+  // WATCH TRAILER
+  // =========================
+
+  function watchTrailer() {
+  const query = `"${movie.Title}" Official Trailer`;
+
+  const youtubeSearchUrl =
+    `https://www.youtube.com/results?search_query=${encodeURIComponent(
+      query
+    )}`;
+
+  window.open(
+    youtubeSearchUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
+}
+  // =========================
+  // POSTER
+  // =========================
+
+  const poster =
+    movie.Poster && movie.Poster !== "N/A"
+      ? movie.Poster
+      : "https://via.placeholder.com/500x750?text=No+Image";
+
+  // =========================
+  // UI
+  // =========================
+
   return (
     <section
       className="movie-details"
@@ -128,17 +147,19 @@ function MovieDetails() {
         backgroundImage: `
           linear-gradient(
             to right,
-            rgba(0,0,0,.96),
-            rgba(0,0,0,.84),
-            rgba(0,0,0,.55)
+            rgba(0, 0, 0, 0.96),
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.55)
           ),
-          url(${movie.Poster})
+          url("${poster}")
         `,
       }}
     >
-      {/* Back Button */}
+
+      {/* BACK BUTTON */}
 
       <button
+        type="button"
         className="back-btn"
         onClick={() => navigate(-1)}
       >
@@ -146,31 +167,36 @@ function MovieDetails() {
         Back
       </button>
 
-      {/* Movie Content */}
+      {/* CONTENT */}
 
       <div className="details-container">
 
-        {/* Poster */}
+        {/* POSTER */}
 
-        <img
-          className="details-poster"
-          src={
-            movie.Poster !== "N/A"
-              ? movie.Poster
-              : "https://via.placeholder.com/300x450?text=No+Image"
-          }
-          alt={movie.Title}
-        />
+        <div className="details-poster-wrapper">
+          <img
+            className="details-poster"
+            src={poster}
+            alt={movie.Title}
+          />
+        </div>
 
-        {/* Information */}
+        {/* INFORMATION */}
 
         <div className="details-info">
 
+          <span className="details-type">
+            {movie.Type?.toUpperCase()}
+          </span>
+
           <h1>{movie.Title}</h1>
 
+          {/* META */}
+
           <div className="details-meta">
+
             <span>
-              ⭐ {movie.imdbRating}
+              ⭐ {movie.imdbRating || "N/A"}
             </span>
 
             <span>
@@ -178,69 +204,78 @@ function MovieDetails() {
             </span>
 
             <span>
-              {movie.Runtime}
+              {movie.Runtime || "N/A"}
             </span>
 
             <span>
-              {movie.Rated}
+              {movie.Rated || "N/A"}
             </span>
+
           </div>
 
+          {/* PLOT */}
+
           <p className="details-plot">
-            {movie.Plot}
+            {movie.Plot && movie.Plot !== "N/A"
+              ? movie.Plot
+              : "No plot information available."}
           </p>
+
+          {/* DETAILS */}
 
           <div className="details-grid">
 
             <p>
-              <strong>Genre:</strong>{" "}
-              {movie.Genre}
+              <strong>Genre</strong>
+              <span>{movie.Genre || "N/A"}</span>
             </p>
 
             <p>
-              <strong>Director:</strong>{" "}
-              {movie.Director}
+              <strong>Director</strong>
+              <span>{movie.Director || "N/A"}</span>
             </p>
 
             <p>
-              <strong>Actors:</strong>{" "}
-              {movie.Actors}
+              <strong>Actors</strong>
+              <span>{movie.Actors || "N/A"}</span>
             </p>
 
             <p>
-              <strong>Released:</strong>{" "}
-              {movie.Released}
+              <strong>Released</strong>
+              <span>{movie.Released || "N/A"}</span>
             </p>
 
             <p>
-              <strong>Language:</strong>{" "}
-              {movie.Language}
+              <strong>Language</strong>
+              <span>{movie.Language || "N/A"}</span>
             </p>
 
             <p>
-              <strong>Awards:</strong>{" "}
-              {movie.Awards}
+              <strong>Awards</strong>
+              <span>{movie.Awards || "N/A"}</span>
             </p>
 
           </div>
 
-          {/* Buttons */}
+          {/* BUTTONS */}
 
           <div className="details-buttons">
 
+            {/* WATCH TRAILER */}
+
             <button
+              type="button"
               className="play-button"
-              onClick={handleTrailer}
-              disabled={trailerLoading}
+              onClick={watchTrailer}
             >
               <FaPlay />
-
-              {trailerLoading
-                ? "Loading Trailer..."
-                : "Watch Trailer"}
+              Watch Trailer
             </button>
 
+            {/* FAVORITE */}
+
             <button
+              type="button"
               className={`favorite-button ${
                 isFavorite ? "active" : ""
               }`}
@@ -257,6 +292,7 @@ function MovieDetails() {
 
         </div>
       </div>
+
     </section>
   );
 }

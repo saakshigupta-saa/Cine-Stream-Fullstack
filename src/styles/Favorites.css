@@ -1,0 +1,402 @@
+/* =================================
+   FAVORITES PAGE
+================================= */
+
+.favorites-page {
+  min-height: calc(100vh - 72px);
+
+  padding-bottom: 100px;
+
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(229, 9, 20, 0.08),
+      transparent 30%
+    ),
+    #141414;
+}
+
+/* =================================
+   HEADER
+================================= */
+
+.favorites-header {
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 70px 60px 45px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+.favorites-heading {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.favorites-label {
+  margin-bottom: 10px;
+
+  color: #e50914;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.favorites-title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(40px, 5vw, 64px);
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+
+  font-weight: 850;
+}
+
+.favorites-subtitle {
+  margin: 16px 0 0;
+
+  color: #858585;
+
+  font-size: 14px;
+}
+
+/* =================================
+   COUNT
+================================= */
+
+.favorites-count {
+  min-width: 75px;
+
+  height: 75px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  border: 1px solid
+    rgba(229, 9, 20, 0.25);
+
+  border-radius: 14px;
+
+  background: rgba(229, 9, 20, 0.08);
+
+  color: #e50914;
+}
+
+.favorites-count svg {
+  font-size: 18px;
+}
+
+.favorites-count span {
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+/* =================================
+   CONTENT
+================================= */
+
+.favorites-content {
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 45px 60px 0;
+}
+
+.favorites-section-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+.favorites-section-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 22px;
+
+  font-weight: 750;
+}
+
+.favorites-section-heading span {
+  color: #666666;
+
+  font-size: 12px;
+}
+
+/* =================================
+   REMOVE EMPTY MOVIE ROW SPACING
+================================= */
+
+.favorites-content .movie-row {
+  margin-top: 10px;
+
+  margin-bottom: 0;
+}
+
+.favorites-content .row-header {
+  display: none;
+}
+
+/* =================================
+   EMPTY STATE
+================================= */
+
+.favorites-empty {
+  min-height: 480px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  text-align: center;
+}
+
+.empty-heart {
+  width: 90px;
+
+  height: 90px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 25px;
+
+  border: 1px solid
+    rgba(229, 9, 20, 0.25);
+
+  border-radius: 50%;
+
+  background: rgba(229, 9, 20, 0.08);
+
+  color: #e50914;
+
+  font-size: 32px;
+
+  box-shadow:
+    0 15px 45px
+      rgba(229, 9, 20, 0.08);
+}
+
+.favorites-empty h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 26px;
+
+  font-weight: 750;
+}
+
+.favorites-empty p {
+  max-width: 380px;
+
+  margin: 12px 0 25px;
+
+  color: #777777;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+/* =================================
+   BROWSE BUTTON
+================================= */
+
+.browse-movies-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  min-height: 44px;
+
+  padding: 0 18px;
+
+  border-radius: 7px;
+
+  background: #e50914;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 25px
+      rgba(229, 9, 20, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.browse-movies-btn:hover {
+  background: #f40612;
+
+  transform: translateY(-2px);
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+  .favorites-header {
+    padding: 60px 40px 40px;
+  }
+
+  .favorites-content {
+    padding-left: 40px;
+
+    padding-right: 40px;
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+  .favorites-header {
+    padding: 45px 20px 30px;
+
+    align-items: center;
+  }
+
+  .favorites-title {
+    font-size: 40px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .favorites-subtitle {
+    margin-top: 12px;
+
+    font-size: 12px;
+  }
+
+  .favorites-count {
+    min-width: 55px;
+
+    height: 55px;
+
+    border-radius: 10px;
+  }
+
+  .favorites-count svg {
+    font-size: 14px;
+  }
+
+  .favorites-count span {
+    font-size: 14px;
+  }
+
+  .favorites-content {
+    padding: 30px 20px 0;
+  }
+
+  .favorites-section-heading h2 {
+    font-size: 19px;
+  }
+
+  .favorites-section-heading span {
+    font-size: 10px;
+  }
+
+  .favorites-empty {
+    min-height: 420px;
+
+    padding-left: 20px;
+
+    padding-right: 20px;
+  }
+
+  .empty-heart {
+    width: 75px;
+
+    height: 75px;
+
+    font-size: 27px;
+  }
+
+  .favorites-empty h2 {
+    font-size: 22px;
+  }
+
+  .favorites-empty p {
+    font-size: 13px;
+  }
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 400px) {
+  .favorites-title {
+    font-size: 34px;
+  }
+
+  .favorites-header {
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
+
+  .favorites-content {
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
+}
