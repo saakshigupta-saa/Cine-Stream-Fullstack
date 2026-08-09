@@ -173,13 +173,14 @@ function MovieDetails() {
 
         {/* POSTER */}
 
-        <div className="details-poster-wrapper">
-          <img
-            className="details-poster"
-            src={poster}
-            alt={movie.Title}
-          />
-        </div>
+<div className="details-poster-wrapper">
+  <img
+    className="details-poster"
+    src={poster}
+    alt={movie.Title}
+    loading="lazy"
+  />
+</div>
 
         {/* INFORMATION */}
 

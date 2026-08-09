@@ -1,0 +1,177 @@
+/* =========================
+   MOOD MATCHER
+========================= */
+
+.mood-matcher {
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(229, 9, 20, 0.12),
+      rgba(255, 255, 255, 0.03)
+    );
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.mood-matcher:hover {
+  border-color: rgba(229, 9, 20, 0.3);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.mood-matcher-header {
+  margin-bottom: 22px;
+}
+
+.mood-matcher-header h2 {
+  margin-bottom: 8px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.mood-matcher-header p {
+  color: #a8a8a8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   INPUT AREA
+========================= */
+
+.mood-input-wrapper {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.mood-input {
+  flex: 1;
+
+  min-width: 0;
+  height: 48px;
+
+  padding: 0 16px;
+
+  border: 1px solid #333;
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #1d1d1d;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mood-input::placeholder {
+  color: #777;
+}
+
+.mood-input:focus {
+  border-color: #e50914;
+
+  background: #202020;
+
+  box-shadow:
+    0 0 0 3px rgba(229, 9, 20, 0.12);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.mood-button {
+  height: 48px;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #e50914;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.mood-button:hover {
+  background: #f40612;
+  transform: translateY(-1px);
+}
+
+.mood-button:active {
+  transform: translateY(0);
+}
+
+.mood-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.mood-error {
+  margin-top: 14px;
+
+  color: #ff6b6b;
+  font-size: 13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+  .mood-matcher {
+    margin: 35px 16px;
+    padding: 24px;
+  }
+
+  .mood-input-wrapper {
+    flex-direction: column;
+  }
+
+  .mood-input,
+  .mood-button {
+    width: 100%;
+  }
+}

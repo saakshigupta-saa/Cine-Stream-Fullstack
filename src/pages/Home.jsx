@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { searchMovies } from "../api/omdb";
 import MovieRow from "../components/MovieRow";
+import MoodMatcher from "../components/MoodMatcher";
 import useDebounce from "../hooks/useDebounce";
 
 import "../styles/Home.css";
@@ -16,9 +17,15 @@ function Home({ searchTerm }) {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
+  const [moodMovie, setMoodMovie] = useState(null);
+
   const loader = useRef(null);
 
   const debouncedSearch = useDebounce(searchTerm, 500);
+
+  // =========================
+  // MOVIE CATEGORIES
+  // =========================
 
   const categories = [
     {
@@ -55,11 +62,9 @@ function Home({ searchTerm }) {
     },
   ];
 
-  /*
-  =========================
-  SEARCH
-  =========================
-  */
+  // =========================
+  // SEARCH
+  // =========================
 
   useEffect(() => {
     if (!debouncedSearch.trim()) {
@@ -87,18 +92,15 @@ function Home({ searchTerm }) {
       }
     } catch (error) {
       console.error("Search error:", error);
-
       setSearchResults([]);
     } finally {
       setSearchLoading(false);
     }
   }
 
-  /*
-  =========================
-  CATEGORY MOVIES
-  =========================
-  */
+  // =========================
+  // CATEGORY MOVIES
+  // =========================
 
   useEffect(() => {
     if (debouncedSearch.trim()) {
@@ -149,7 +151,6 @@ function Home({ searchTerm }) {
         setMovieRows((prevRows) =>
           prevRows.map((row, index) => ({
             ...row,
-
             movies: [
               ...row.movies,
               ...results[index].movies,
@@ -167,11 +168,9 @@ function Home({ searchTerm }) {
     }
   }
 
-  /*
-  =========================
-  RESET PAGINATION
-  =========================
-  */
+  // =========================
+  // RESET PAGINATION
+  // =========================
 
   useEffect(() => {
     if (!debouncedSearch.trim()) {
@@ -180,31 +179,30 @@ function Home({ searchTerm }) {
     }
   }, [debouncedSearch]);
 
-  /*
-  =========================
-  INFINITE SCROLL
-  =========================
-  */
+  // =========================
+  // INFINITE SCROLL
+  // =========================
 
   useEffect(() => {
     if (debouncedSearch.trim()) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (
-          entries[0].isIntersecting &&
-          !loading &&
-          hasMore
-        ) {
-          setPage((prev) => prev + 1);
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          if (
+            entries[0].isIntersecting &&
+            !loading &&
+            hasMore
+          ) {
+            setPage((prev) => prev + 1);
+          }
+        },
+        {
+          rootMargin: "300px",
         }
-      },
-      {
-        rootMargin: "300px",
-      }
-    );
+      );
 
     const currentLoader = loader.current;
 
@@ -223,23 +221,58 @@ function Home({ searchTerm }) {
     hasMore,
   ]);
 
-  /*
-  =========================
-  SEARCH STATE
-  =========================
-  */
+  // =========================
+  // SEARCH STATE
+  // =========================
 
   const showSearch =
     debouncedSearch.trim().length > 0;
 
-  /*
-  =========================
-  RENDER
-  =========================
-  */
+  // =========================
+  // MOOD MATCHER
+  // =========================
+
+  function handleMoodMovie({
+    title,
+    movie,
+  }) {
+    console.log(
+      "Mood movie:",
+      title,
+      movie
+    );
+
+    setMoodMovie(movie);
+  }
+
+  // =========================
+  // RENDER
+  // =========================
 
   return (
     <main className="home">
+
+      {/* =====================
+          AI MOOD MATCHER
+      ===================== */}
+
+      {!showSearch && (
+        <MoodMatcher
+          onMovieFound={handleMoodMovie}
+        />
+      )}
+
+      {/* =====================
+          MOOD MATCH RESULT
+      ===================== */}
+
+      {!showSearch &&
+        moodMovie && (
+          <MovieRow
+            title="✨ Your Mood Match"
+            movies={[moodMovie]}
+          />
+        )}
 
       {/* =====================
           SEARCH RESULTS
@@ -285,10 +318,12 @@ function Home({ searchTerm }) {
               </p>
 
               <span>
-                Try another movie title or keyword.
+                Try another movie title or
+                keyword.
               </span>
 
             </div>
+
           )}
 
         </section>
@@ -350,6 +385,10 @@ function Home({ searchTerm }) {
 
             </div>
           )}
+
+          {/* =====================
+              END MESSAGE
+          ===================== */}
 
           {!hasMore && (
             <div className="end-message">
