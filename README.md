@@ -1,124 +1,82 @@
-# 🎬 CineStream — Media Explorer
+# 🎬 Cine-Stream Fullstack
 
-> A modern, responsive movie discovery platform built with React and Vite, powered by the OMDb API.
+A full-stack movie discovery platform that combines a modern React/Vite frontend with a Node.js REST API for creating and displaying posts.
 
-CineStream is a frontend movie discovery application designed to provide a smooth, cinematic browsing experience. Users can explore curated movie collections, search for movies, view detailed information, save favorites, and find official trailers.
+## ✨ Features
 
----
+### 🎥 Movie Explorer
 
-## ✨ Overview
+* Browse movies by categories
+* Search movies using keywords
+* View movie details
+* Explore movie collections
+* Infinite scrolling for movie discovery
+* Movie posters and trailers
 
-CineStream combines a clean streaming-platform-inspired interface with real-time movie data from the **OMDb API**.
+### 🤖 Mood Matcher
 
-The project focuses on:
-
-* Clean component architecture
-* Responsive UI design
-* Reusable React components
-* API integration
-* Client-side routing
-* Search optimization
-* Persistent favorites
-* Loading and error handling
-* Production-ready frontend structure
-
----
-
-## 🚀 Features
-
-### 🎥 Movie Discovery
-
-* Curated movie categories
-* Trending-style movie sections
-* Horizontal movie sliders
-* Interactive movie cards
-* Infinite scrolling
-
-### 🔎 Smart Search
-
-* Real-time movie search
-* Debounced search input
-* Search loading state
-* Empty search state
-* API error handling
-
-### 📖 Movie Details
-
-Each movie has a dedicated details page containing:
-
-* Movie poster
-* Movie title
-* IMDb rating
-* Release year
-* Runtime
-* Certification
-* Plot
-* Genre
-* Director
-* Cast
-* Release date
-* Language
-* Awards
+* Find movies based on your mood
+* Interactive movie recommendation experience
 
 ### ❤️ Favorites
 
-Users can:
+* Save favorite movies
+* Manage favorites from a dedicated page
 
-* Add movies to favorites
-* Remove movies from favorites
-* View saved movies
-* See total favorites count
-* Access an empty-state experience
-* Persist favorites using browser storage
+### 📝 Data Hub Integration
 
-### ▶️ Official Trailers
-
-The application provides an **Official Trailer** option that searches YouTube for the selected movie's official trailer.
-
-### 📱 Responsive Design
-
-CineStream is designed for:
-
-* Desktop
-* Laptop
-* Tablet
-* Mobile
-
----
+* Fetch posts from a local Node.js REST API
+* Display posts from the backend
+* Create new posts directly from the Cine-Stream interface
+* Loading states while fetching data
+* Error handling for failed API requests
 
 ## 🛠️ Tech Stack
 
-| Technology   | Purpose                     |
-| ------------ | --------------------------- |
-| React        | UI development              |
-| Vite         | Development & build tooling |
-| JavaScript   | Application logic           |
-| CSS          | Styling & responsive design |
-| React Router | Client-side routing         |
-| Axios        | API requests                |
-| React Icons  | Interface icons             |
-| OMDb API     | Movie data                  |
+### Frontend
 
----
+* React
+* Vite
+* JavaScript
+* Axios
+* CSS
 
-## 🏗️ Project Architecture
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* REST API
+* CORS
+
+### APIs
+
+* OMDb API
+* Data Hub REST API
+
+## 📁 Project Structure
 
 ```text
-cine-stream/
+Cine-Stream-Fullstack/
 │
 ├── public/
 │
 ├── src/
-│   │
 │   ├── api/
-│   │   └── omdb.js
+│   │   ├── omdb.js
+│   │   ├── watchmode.js
+│   │   └── dataHub.js
 │   │
 │   ├── components/
 │   │   ├── Header.jsx
 │   │   ├── Hero.jsx
-│   │   ├── SearchBar.jsx
+│   │   ├── Loader.jsx
+│   │   ├── MoodMatcher.jsx
 │   │   ├── MovieCard.jsx
+│   │   ├── MovieGrid.jsx
 │   │   ├── MovieRow.jsx
+│   │   ├── SearchBar.jsx
 │   │   └── TrailerModal.jsx
 │   │
 │   ├── context/
@@ -128,64 +86,70 @@ cine-stream/
 │   │   └── useDebounce.js
 │   │
 │   ├── pages/
-│   │   ├── Home.jsx
 │   │   ├── Favorites.jsx
+│   │   ├── Home.jsx
 │   │   └── MovieDetails.jsx
 │   │
-│   ├── styles/
-│   │   ├── App.css
-│   │   ├── Home.css
-│   │   ├── MovieRow.css
-│   │   ├── MovieDetails.css
-│   │   ├── Favorites.css
-│   │   └── TrailerModal.css
-│   │
-│   ├── App.jsx
-│   └── main.jsx
+│   └── styles/
 │
 ├── .env
 ├── .gitignore
-├── index.html
 ├── package.json
-├── Prompt.md
-└── README.md
+├── README.md
+└── vite.config.js
 ```
 
-## 🔐 Environment Configuration
+## 🔌 Data Hub API Integration
 
-Create a `.env` file in the project root:
+Cine-Stream communicates with the Data Hub REST API to manage posts.
+
+### Get Posts
+
+```http
+GET /posts
+```
+
+### Create Post
+
+```http
+POST /posts
+```
+
+Example request:
+
+```json
+{
+  "title": "My First Post",
+  "content": "I love watching movies!"
+}
+```
+
+The frontend automatically updates the posts list after successfully creating a post.
+
+## ⚙️ Environment Variables
+
+Create a `.env` file in the frontend project:
 
 ```env
-VITE_OMDB_API_KEY=your_api_key
-VITE_OMDB_BASE_URL=https://www.omdbapi.com/
+VITE_OMDB_BASE_URL=your_omdb_base_url
+VITE_OMDB_API_KEY=your_omdb_api_key
+VITE_DATA_HUB_BASE_URL=http://localhost:5000
 ```
 
-### Important
+> Never commit real API keys or secrets to GitHub.
 
-Never commit your `.env` file to GitHub.
-
-Your `.gitignore` should include:
-
-```gitignore
-node_modules/
-dist/
-.env
-.env.local
-.env.*.local
-```
-
-## ⚙️ Getting Started
+## 🚀 Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/saakshigupta-saa/Cine-Stream.git
+git clone https://github.com/saakshigupta-saa/Cine-Stream-Fullstack.git
 ```
 
-### 2. Navigate to the project
+### 2. Open the project
 
 ```bash
-cd cine-stream
+cd Cine-Stream-Fullstack
 ```
 
 ### 3. Install dependencies
@@ -196,70 +160,33 @@ npm install
 
 ### 4. Configure environment variables
 
-Create `.env` and add your OMDb API credentials.
+Create `.env` and add the required API configuration.
 
-### 5. Start the development server
+### 5. Start the frontend
 
 ```bash
 npm run dev
 ```
 
-The application will be available at the local URL provided by Vite.
+The Vite development server will start locally.
 
----
+## 🔗 Related Project
 
-## 🏗️ Production Build
+### Data Hub API
 
-Create an optimized production build:
+The backend REST API used by Cine-Stream provides the post management functionality.
 
-```bash
-npm run build
-```
+GitHub: https://github.com/saakshigupta-saa/Data-Hub-Mongodb
 
-Preview the production build locally:
+## 🎯 Project Goal
 
-```bash
-npm run preview
-```
-
----
-
-## 🎨 Design System
-
-CineStream follows a dark cinematic design language inspired by modern streaming services.
-
-### UI Principles
-
-* Strong visual hierarchy
-* Consistent spacing
-* Compact controls
-* Responsive layouts
-* Smooth transitions
-* Interactive hover states
-* Accessible contrast
-* Minimal visual clutter
-
----
-
-
-## 🚀 Deployment
-
-https://cine-stream-steel-sigma.vercel.app/
----
+The goal of this project is to demonstrate **full-stack system integration** by connecting a React/Vite SPA with a Node.js REST API and MongoDB-backed data.
 
 ## 👩‍💻 Author
 
-### Sakshi Gupta
+**Sakshi Gupta**
 
----
+BSc Computer Science & Data Analytics
+IIT Patna
 
-## 📄 License
-
-This project was developed for educational, portfolio, and learning purposes.
-
----
-
-
-### 🎬 CineStream
-
-**Discover. Explore. Save. Watch.**
+GitHub: https://github.com/saakshigupta-saa
