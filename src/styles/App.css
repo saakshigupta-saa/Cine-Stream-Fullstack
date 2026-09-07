@@ -166,3 +166,152 @@ img {
     overflow-x: hidden;
   }
 }
+/* =========================
+   DATA HUB POSTS
+========================= */
+
+.data-hub-posts {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.data-hub-posts h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   CREATE POST FORM
+========================= */
+
+.create-post-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.create-post-form input,
+.create-post-form textarea {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.create-post-form input {
+  width: 30%;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.create-post-form textarea {
+  width: 45%;
+  min-height: 48px;
+  max-height: 120px;
+  padding: 12px 16px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.create-post-form input::placeholder,
+.create-post-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.create-post-form input:focus,
+.create-post-form textarea:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+.create-post-form button {
+  height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111111;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+  white-space: nowrap;
+}
+
+.create-post-form button:hover {
+  transform: translateY(-2px);
+  background: #eeeeee;
+}
+
+.create-post-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================
+   POSTS
+========================= */
+
+.data-hub-posts article {
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.data-hub-posts article h3 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.data-hub-posts article p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .data-hub-posts {
+    padding: 0 20px;
+  }
+
+  .create-post-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .create-post-form input,
+  .create-post-form textarea {
+    width: 100%;
+  }
+
+  .create-post-form button {
+    width: 100%;
+  }
+}

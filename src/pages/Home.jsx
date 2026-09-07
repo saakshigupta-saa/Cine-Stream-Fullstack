@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { searchMovies } from "../api/omdb";
+import { getPosts, createPost } from "../api/dataHub";
 import MovieRow from "../components/MovieRow";
 import MoodMatcher from "../components/MoodMatcher";
 import useDebounce from "../hooks/useDebounce";
@@ -10,6 +11,12 @@ import "../styles/Home.css";
 function Home({ searchTerm }) {
   const [movieRows, setMovieRows] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [postsLoading, setPostsLoading] = useState(true);
+  const [postsError, setPostsError] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+const [postContent, setPostContent] = useState("");
+const [postSubmitting, setPostSubmitting] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -22,6 +29,48 @@ function Home({ searchTerm }) {
   const loader = useRef(null);
 
   const debouncedSearch = useDebounce(searchTerm, 500);
+  const handleCreatePost = async (event) => {
+  event.preventDefault();
+
+  if (!postTitle.trim() || !postContent.trim()) {
+    return;
+  }
+
+  try {
+    setPostSubmitting(true);
+
+    const response = await createPost(postTitle, postContent);
+
+    setPosts((currentPosts) => [response.post, ...currentPosts]);
+
+    setPostTitle("");
+    setPostContent("");
+  } catch (error) {
+    console.error("Post creation error:", error);
+  } finally {
+    setPostSubmitting(false);
+  }
+};
+
+  // =========================
+  // DATA HUB POSTS
+  // =========================
+
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        const data = await getPosts();
+        setPosts(data);
+      } catch (error) {
+        console.error("Posts loading error:", error);
+        setPostsError("Unable to load posts.");
+      } finally {
+        setPostsLoading(false);
+      }
+    }
+
+    loadPosts();
+  }, []);
 
   // =========================
   // MOVIE CATEGORIES
@@ -253,6 +302,51 @@ function Home({ searchTerm }) {
     <main className="home">
 
       {/* =====================
+          DATA HUB POSTS
+      ===================== */}
+
+      {!showSearch && (
+        <section className="data-hub-posts">
+          <h2>Latest Posts</h2>
+
+<form onSubmit={handleCreatePost} className="create-post-form">
+  <input
+    type="text"
+    placeholder="Post title"
+    value={postTitle}
+    onChange={(event) => setPostTitle(event.target.value)}
+  />
+
+  <textarea
+    placeholder="Write your post..."
+    value={postContent}
+    onChange={(event) => setPostContent(event.target.value)}
+  />
+
+  <button type="submit" disabled={postSubmitting}>
+    {postSubmitting ? "Creating..." : "Create Post"}
+  </button>
+</form>
+
+
+          {postsLoading ? (
+            <p>Loading posts...</p>
+          ) : postsError ? (
+            <p>{postsError}</p>
+          ) : posts.length > 0 ? (
+            posts.map((post) => (
+              <article key={post._id}>
+                <h3>{post.title}</h3>
+                <p>{post.content}</p>
+              </article>
+            ))
+          ) : (
+            <p>No posts available.</p>
+          )}
+        </section>
+      )}
+
+      {/* =====================
           AI MOOD MATCHER
       ===================== */}
 
@@ -305,7 +399,7 @@ function Home({ searchTerm }) {
               <div className="empty-search-icon">
                 🔍
               </div>
-
+              
               <h2>
                 No movies found
               </h2>
