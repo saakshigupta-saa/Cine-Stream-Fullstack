@@ -1,185 +1,69 @@
-# CineStream — Development Prompts
+# Prompts.md
 
-This document records the major development requirements and prompts used while building CineStream Media Explorer.
+## Cine-Stream Fullstack
 
----
+This file documents the prompts I used while developing, debugging, and improving the Cine-Stream Fullstack project.
 
-# Phase 1 — Project Foundation
+### 1. Project Development
 
-## Objective
+> Help me build and improve a React + Vite movie discovery application with a clean, responsive UI and reusable components.
 
-Create the initial React/Vite application structure and establish the base UI.
+### 2. Movie API Integration
 
-## Requirements
+> Help me integrate the OMDb API into my React application for movie search, movie details, categories, and dynamic movie data.
 
-* Set up React with Vite
-* Create reusable components
-* Create page-based routing
-* Establish global CSS
-* Create the main application layout
-* Build the navigation header
-* Build the hero section
-* Create the search interface
+### 3. Search Functionality
 
----
+> Help me implement movie search with a debounce so that API requests are not sent on every keystroke.
 
-# Phase 2 — OMDb API Integration
+### 4. Movie UI
 
-## Objective
+> Help me improve the movie cards, movie rows, loading states, search results, and overall spacing so the interface looks polished and responsive.
 
-Connect the application to the OMDb API.
+### 5. Favorites
 
-## Requirements
+> Help me implement a favorites feature using React Context so users can save and manage their favorite movies.
 
-* Store API configuration in environment variables
-* Create a reusable Axios API client
-* Implement movie search
-* Implement movie details
-* Handle API errors
-* Handle empty search results
-* Handle loading states
+### 6. Mood Matcher
 
-## Environment Variables
+> Help me build a mood-based movie recommendation feature where users can select a mood and receive a suitable movie recommendation.
 
-```env
-VITE_OMDB_API_KEY=
-VITE_OMDB_BASE_URL=https://www.omdbapi.com/
-```
+### 7. Data Hub Integration
 
-## API Functions
+> Help me connect my React frontend to my Node.js Data Hub REST API instead of using dummy post data.
 
-```text
-searchMovies()
-getMovieDetails()
-```
+### 8. Fetch Posts
 
----
+> Help me use Axios and useEffect to fetch posts from my local Data Hub API and display them in the Cine-Stream homepage.
 
-# Phase 3 — Movie Experience
+### 9. Create Posts
 
-## Objective
+> Help me add a form that sends a POST request from React to the Data Hub API and updates the posts list after a successful response.
 
-Build the core movie browsing and interaction experience.
+### 10. Error Debugging
 
-## Requirements
+> Help me understand why my Data Hub API request is failing and guide me through checking the browser console, Network tab, backend server, and API response.
 
-* Create movie cards
-* Create horizontally scrollable movie rows
-* Add category-based movie sections
-* Implement search results
-* Add debounced search
-* Implement movie details page
-* Add React Router navigation
-* Add favorite functionality
-* Add trailer functionality
----
+### 11. UI Styling
 
-# Phase 4 — Advanced Functionality & UI Polish
+> Help me style the Data Hub post section and create-post form so that it matches the existing dark Cine-Stream design and remains responsive on mobile devices.
 
-## Objective
+### 12. GitHub
 
-Complete the core application and improve the overall user experience.
+> Help me organize my project and prepare the final Cine-Stream Fullstack project for GitHub with a professional README and proper project structure.
 
-## Requirements
+## Development Approach
 
-### Search
+I used AI assistance mainly for:
 
-* Add debounced search
-* Prevent unnecessary API requests
-* Display search loading state
-* Display search empty state
-* Display search results
+* Understanding concepts
+* Debugging errors
+* Improving UI and CSS
+* Understanding API integration
+* Reviewing implementation decisions
+* Troubleshooting frontend-backend communication
 
-### Movie Discovery
+The project implementation, testing, and integration were completed as part of my own development work.
 
-* Implement multiple movie categories
-* Implement infinite scrolling
-* Prevent unnecessary requests
-* Handle empty API responses
-* Display loading indicators
-* Display end-of-results state
-
-### Movie Details
-
-Create a detailed movie page containing:
-
-* Movie poster
-* Movie title
-* IMDb rating
-* Release year
-* Runtime
-* Rating
-* Plot
-* Genre
-* Director
-* Actors
-* Release date
-* Language
-* Awards
-
-### Favorites
-
-Implement:
-
-* Add to favorites
-* Remove from favorites
-* Favorite state indicator
-* Favorites page
-* Favorites count
-* Empty favorites state
-* Persistent browser storage
-
-### Trailer
-
-Implement an official trailer discovery option.
-
-When an actual trailer video ID is unavailable through the selected API, provide a fallback to the official YouTube trailer search.
-
----
-
-# Responsive Design
-
-The application must work across:
-
-```text
-Desktop
-Tablet
-Mobile
-```
-
-### Mobile requirements
-
-* No horizontal page overflow
-* Responsive movie cards
-* Responsive movie details
-* Full-width action buttons
-* Responsive favorites page
-* Properly scaled hero content
-* Touch-friendly controls
-
----
-
-# Error Handling
-
-The application should gracefully handle:
-
-* Invalid movie IDs
-* Empty searches
-* API failures
-* Missing posters
-* Missing movie information
-* Missing trailer information
-* Network failures
-
----
-
-# Production Requirements
-
-Before deployment:
-
-```bash
-npm install
-npm run build
-```
 
 
